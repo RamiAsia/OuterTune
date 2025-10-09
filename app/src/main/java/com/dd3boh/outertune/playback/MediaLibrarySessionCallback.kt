@@ -81,6 +81,9 @@ class MediaLibrarySessionCallback @Inject constructor(
             MediaSessionConstants.ACTION_TOGGLE_LIBRARY -> toggleLibrary()
             MediaSessionConstants.ACTION_TOGGLE_SHUFFLE -> session.player.toggleShuffleMode()
             MediaSessionConstants.ACTION_TOGGLE_REPEAT_MODE -> session.player.toggleRepeatMode()
+            "GIMME_BINDER" ->  SessionResult(SessionResult.RESULT_SUCCESS).also {
+                it.extras.putBinder("plzwork", service.MusicBinder())
+            }
         }
         return Futures.immediateFuture(SessionResult(SessionResult.RESULT_SUCCESS))
     }
